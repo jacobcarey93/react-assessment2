@@ -1,47 +1,40 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getUserCredentials, getAllAnimals } from '../../ducks/reducer';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
+import AnimalTile from './AnimalTile/AnimalTile';
+import './BrowsingView.css';
 
 class BrowsingView extends Component {
     constructor(props) {
         super(props)
-
-        this.state = {
-            userInfo: {},
-        }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.getUserCredentials();
         axios.get('/api/getallanimals')
-        .then(animals => {
-            this.props.getAllAnimals(animals.data);
-        })
+            .then(animals => {
+                this.props.getAllAnimals(animals.data);
+            })
     }
 
     render() {
-        // console.log('this.props', this.props)
-        // console.log('this.state', this.state)
+        console.log('this.props', this.props.userCredentials)
+
         return (
             <div className='BrowsingView'>
-            <h1>BrowsingView</h1>
-            {this.props.animals.map((animal, i) => {
-            // map through products here to display all
-            return (
-              <div key={i}>
-              
-                <Link to={`/details/${animal.id}`} >
-                  <img src={animal.img} alt={animal.name} />
-                  <p>{animal.name}</p>
-                  <p> animal id: {animal.id}</p>
-                  <p>MORE ABOUT THIS PET</p>
-                </Link>
-
-              </div>
-            )
-          })}
+                <h1 className='super-cool-title'>BrowsingView</h1>
+                {this.props.animals.map((animal, i) => {
+                    return (
+                        <div key={i}>
+                            <AnimalTile
+                                name={animal.name}
+                                img={animal.img}
+                                id={animal.id}
+                            />
+                        </div>
+                    )
+                })}
             </div>
         )
     }

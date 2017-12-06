@@ -12,6 +12,7 @@ export default (
                 <Route exact path='/' component={AuthView} />
                 <Route path='/browsing' component={BrowsingView} />
                 <Route path='/details/:id' component={DetailsView} />
+                <Route path="/render" render={() => <h1>ROUTE RENDER</h1>} />
             </div>
         </Switch>
     </Router>
