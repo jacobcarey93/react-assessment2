@@ -82,6 +82,8 @@ app.get('/api/getusercredentials/:id', userController.getUserCredentials);
 app.get('/api/getallanimals', userController.getAllAnimals);
 app.get('/api/details/:id', userController.getAnimal);
 app.post('api/addanimal', userController.addAnimal);
+app.put('/api/editanimal', userController.editAnimal);
+app.delete('/api/delete/:id', userController.deleteAnimal);
 
 
 const PORT = 3005

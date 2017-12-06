@@ -28,4 +28,19 @@ module.exports = {
                 res.status(200).send(data)
             }).catch(() => res.status(500).send('Something went wrong retreiving the animal'))
     },
+    editAnimal: (req, res, next) => {
+        const db = req.app.get('db')
+        db.edit_animal([req.body.id, req.body.name, req.body.img])
+            .then(data => {
+                res.status(200).send(data)
+            }).catch(() => res.status(500).send('Something went wrong retreiving the animal'))
+    },
+    deleteAnimal: (req, res, next) => {
+        const db = req.app.get('db')
+        db.delete_animal([req.params.id])
+            .then(data => {
+                res.status(200).send(data)
+            }).catch(() => res.status(500).send('Something went wrong retreiving the animal'))
+    },
+    
 }
