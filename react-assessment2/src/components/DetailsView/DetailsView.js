@@ -41,7 +41,10 @@ class Details extends Component {
             img: this.state.imgurl
 
         }
-        axios.put('/api/editanimal')
+        axios.put('/api/editanimal', data)
+        .then(res => {
+            alert('animal has been edited')
+        })
     }
 
     handleChange(e, formfield) {
@@ -59,8 +62,8 @@ class Details extends Component {
                 <div>
                     <img alt={animal.name} src={animal.img} />
                     <p>{animal.name}</p>
-                    <input type='text' value='animal name' label='Animal Name' onChange={(e) => this.handleChange(e.target.value, 'name')}/>
-                    <input type='text' value='image url' label='Animal Image Url' onChange={(e) => this.handleChange(e.target.value, 'imgurl')}/>
+                    <input type='text' label='Animal Name' onChange={(e) => this.handleChange(e.target.value, 'name')}/>
+                    <input type='text' label='Animal Image Url' onChange={(e) => this.handleChange(e.target.value, 'imgurl')}/>
                     <button onClick={() => this.editAnimal()}>Edit Animal</button>
                     <button onClick={() => this.deleteAnimal()}>Delete Animal</button>
                 </div>
